@@ -20,7 +20,11 @@ class App extends Component {
  
    
   componentDidMount() {
-    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=cats&per_page=24&format=json&nojsoncallback=1`)
+    this.performSearch();
+  }
+
+  performSearch = (query = 'granger smith') => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
         this.setState({photos: responseData.photos,
@@ -36,7 +40,7 @@ class App extends Component {
     console.log(typeof this.state.photos)
     return (
       <div className="container">
-        <SearchForm />
+        <SearchForm onSearch={this.performSearch} />
         <Nav />
         {
             (this.state.loading)
