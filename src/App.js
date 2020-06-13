@@ -23,7 +23,7 @@ class App extends Component {
     this.performSearch();
   }
 
-  performSearch = (query = 'granger smith') => {
+  performSearch = (query = 'black lives matter') => {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
