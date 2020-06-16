@@ -23,7 +23,10 @@ class App extends Component {
       cats: [],
       dogs: [],
       rainbows: [],
-      loading: true
+      loading: true,
+      catsLoading: true,
+      dogsLoading: true,
+      rainbowsLoading: true,
     };
   }
  
@@ -53,7 +56,7 @@ class App extends Component {
         .then(response => response.json())
         .then(responseData => {
           this.setState({cats: responseData.photos,
-          loading: false
+          catsLoading: false
           })
         })
         .catch( error => {
@@ -66,7 +69,7 @@ class App extends Component {
           .then(response => response.json())
           .then(responseData => {
             this.setState({dogs: responseData.photos,
-            loading: false
+            dogsLoading: false
             })
           })
           .catch( error => {
@@ -79,7 +82,7 @@ class App extends Component {
             .then(response => response.json())
             .then(responseData => {
               this.setState({rainbows: responseData.photos,
-              loading: false
+              rainbowsLoading: false
               })
             })
             .catch( error => {
@@ -104,18 +107,18 @@ class App extends Component {
                 : <PhotoContainer data={this.state.photos} />
               }   />
             {/* <Route exact path='/search' render={ () => <SearchForm onSearch={this.performSearch}/>} /> */}
-            <Route path='/search/cats' render={ () => 
-              (this.state.loading)
+            <Route path='/cats' render={ () => 
+              (this.state.catsLoading)
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.cats} />
             } />
-            <Route path='/search/dogs' render={ () => 
-              (this.state.loading)
+            <Route path='/dogs' render={ () => 
+              (this.state.dogsLoading)
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.dogs} />
             } />
-            <Route path='/search/rainbows' render={ () => 
-              (this.state.loading)
+            <Route path='/rainbows' render={ () => 
+              (this.state.rainbowsLoading)
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.rainbows} />
             } />
