@@ -100,7 +100,7 @@ class App extends Component {
               ? <p>Loading...</p>
               : <PhotoContainer data={this.state.photos} />
             }   />
-          {/* <Route path='/search' render={ () => <SearchForm onSearch={this.performSearch}/>} /> */}
+          {/* <Route exact path='/search' render={ () => <SearchForm onSearch={this.performSearch}/>} /> */}
           <Route path='/search/cats' render={ () => 
              (this.state.loading)
               ? <p>Loading...</p>
