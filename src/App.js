@@ -4,10 +4,12 @@ import './App.css';
 import SearchForm from './Components/SearchForm';
 import Nav from './Components/Nav';
 import PhotoContainer from './Components/PhotoContainer';
+import NotFound from './Components/NotFound';
 import apiKey from './config';
 import {
   BrowserRouter, 
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 let key = apiKey;
@@ -20,7 +22,7 @@ class App extends Component {
       photos: [],
       cats: [],
       dogs: [],
-      computers: [],
+      rainbows: [],
       loading: true
     };
   }
@@ -95,27 +97,30 @@ class App extends Component {
         <div className="container">
           <SearchForm onSearch={this.performSearch} />
           <Nav />
-          <Route exact path='/' render={ () =>
+          <Switch>
+            <Route exact path='/' render={ () =>
+                (this.state.loading)
+                ? <p>Loading...</p>
+                : <PhotoContainer data={this.state.photos} />
+              }   />
+            {/* <Route exact path='/search' render={ () => <SearchForm onSearch={this.performSearch}/>} /> */}
+            <Route path='/search/cats' render={ () => 
               (this.state.loading)
-              ? <p>Loading...</p>
-              : <PhotoContainer data={this.state.photos} />
-            }   />
-          {/* <Route exact path='/search' render={ () => <SearchForm onSearch={this.performSearch}/>} /> */}
-          <Route path='/search/cats' render={ () => 
-             (this.state.loading)
-              ? <p>Loading...</p>
-              : <PhotoContainer data={this.state.cats} />
-          } />
-          <Route path='/search/dogs' render={ () => 
-             (this.state.loading)
-              ? <p>Loading...</p>
-              : <PhotoContainer data={this.state.dogs} />
-          } />
-          <Route path='/search/rainbows' render={ () => 
-             (this.state.loading)
-              ? <p>Loading...</p>
-              : <PhotoContainer data={this.state.rainbows} />
-          } />
+                ? <p>Loading...</p>
+                : <PhotoContainer data={this.state.cats} />
+            } />
+            <Route path='/search/dogs' render={ () => 
+              (this.state.loading)
+                ? <p>Loading...</p>
+                : <PhotoContainer data={this.state.dogs} />
+            } />
+            <Route path='/search/rainbows' render={ () => 
+              (this.state.loading)
+                ? <p>Loading...</p>
+                : <PhotoContainer data={this.state.rainbows} />
+            } />
+             <Route component={NotFound} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
@@ -123,8 +128,3 @@ class App extends Component {
 }
 
 export default App;
-
-{/* <Route
-  path='/dashboard'
-  render={(props) => <Dashboard {...props} isAuthed={true} />}
-/> */}
