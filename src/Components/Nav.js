@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-class Nav extends Component {
- render() {
+const Nav = () => {
+
   return (
     <nav className="main-nav">
     <ul>
-      <li><a href='https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg'>Cats</a></li>
-      <li><a href='https://farm5.staticflickr.com/4342/36338751244_316b6ee54b.jpg'>Dogs</a></li>
-      <li><a href='https://farm5.staticflickr.com/4343/37175099045_0d3a249629.jpg'>Computers</a></li>
+      <li><NavLink to='/search/cats'>Cats</NavLink></li>
+      <li><NavLink to='/search/dogs'>Dogs</NavLink></li>
+      <li><NavLink to='/search/computers'>Computers</NavLink></li>
     </ul>
   </nav>
      );
  } 
-}
+
 
 export default Nav;
