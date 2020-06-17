@@ -51,50 +51,48 @@ class App extends Component {
       })
     }
 
-    catSearch = (query = 'cats') => {
-      fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-        .then(response => response.json())
-        .then(responseData => {
-          this.setState({cats: responseData.photos,
-          catsLoading: false
-          })
+ catSearch = (query = 'cats') => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({cats: responseData.photos,
+         catsLoading: false
         })
-        .catch( error => {
-          console.log('There was an Error fetching and parsing data', error)
+      })
+       .catch( error => {
+         console.log('There was an Error fetching and parsing data', error)
+       })
+    }
+
+ dogSearch = (query = 'dogs') => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({dogs: responseData.photos,
+          dogsLoading: false
         })
-      }
+    })
+      .catch( error => {
+         console.log('There was an Error fetching and parsing data', error)
+       })
+  }
 
-      dogSearch = (query = 'dogs') => {
-        fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-          .then(response => response.json())
-          .then(responseData => {
-            this.setState({dogs: responseData.photos,
-            dogsLoading: false
-            })
-          })
-          .catch( error => {
-            console.log('There was an Error fetching and parsing data', error)
-          })
-        }
-
-        rainbowSearch = (query = 'rainbows') => {
-          fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-            .then(response => response.json())
-            .then(responseData => {
-              this.setState({rainbows: responseData.photos,
-              rainbowsLoading: false
-              })
-            })
-            .catch( error => {
-              console.log('There was an Error fetching and parsing data', error)
-            })
-          }
-  
-
+ rainbowSearch = (query = 'rainbows') => {
+   fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+     .then(response => response.json())
+     .then(responseData => {
+       this.setState({rainbows: responseData.photos,
+        rainbowsLoading: false
+      })
+    })
+    .catch( error => {
+      console.log('There was an Error fetching and parsing data', error)
+      })
+  }
 
 
   render() {
-    console.log(this.state.cats)
+   // console.log(this.state.cats)
     return (
       <BrowserRouter>
         <div className="container">
@@ -106,7 +104,11 @@ class App extends Component {
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.photos} />
               }   />
-            {/* <Route exact path='/search' render={ () => <SearchForm onSearch={this.performSearch}/>} /> */}
+            <Route path='/search(/:query)?' render={ () =>
+                (this.state.loading)
+                ? <p>Loading...</p>
+                : <PhotoContainer data={this.state.photos} />
+              } />
             <Route path='/cats' render={ () => 
               (this.state.catsLoading)
                 ? <p>Loading...</p>

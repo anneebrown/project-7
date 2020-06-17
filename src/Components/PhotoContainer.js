@@ -6,7 +6,7 @@ import NoPhotos from './NoPhotos';
 const PhotoContainer = props => {
 
     const results = props.data.photo;
-    console.log(results)
+   // console.log(results)
     let photos;
     if (results.length > 0) {
       photos = results.map(picture => 
