@@ -109,10 +109,10 @@ class App extends Component {
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.photos} />
               }   />
-            <Route path='/search(/:query)?' render={ () =>
+            <Route path='/search(/:query)?' render={ (props) =>
                 (this.state.loading)
                 ? <p>Loading...</p>
-                : <PhotoContainer data={this.state.photos} />
+                : <PhotoContainer data={this.state.photos} urlProps={...props} />
               } />
             <Route path='/cats' render={ () => 
               (this.state.catsLoading)
