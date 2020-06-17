@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-//import axios from 'axios';
 import SearchForm from './Components/SearchForm';
 import Nav from './Components/Nav';
 import PhotoContainer from './Components/PhotoContainer';
@@ -88,6 +87,12 @@ class App extends Component {
     .catch( error => {
       console.log('There was an Error fetching and parsing data', error)
       })
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.photos !== this.state.photos) {
+      console.log('component did update');
+    }
   }
 
 

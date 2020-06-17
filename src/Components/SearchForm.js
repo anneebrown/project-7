@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
+import PropTypes from "prop-types";
 
 class SearchForm extends Component {
 
     state = {
         searchText: ''
       }
+
+      static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+      };
       
       onSearchChange = e => {
         this.setState({ searchText: e.target.value });
@@ -40,4 +47,4 @@ class SearchForm extends Component {
  } 
 }
 
-export default SearchForm;
+export default withRouter (SearchForm);
