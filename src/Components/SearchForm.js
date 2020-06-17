@@ -1,3 +1,5 @@
+//responsible for the search functionality
+
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";

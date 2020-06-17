@@ -1,3 +1,4 @@
+//import statements for all parts that the app class needs, like the components, and react functionality
 import React, { Component } from 'react';
 import './App.css';
 import SearchForm from './Components/SearchForm';
@@ -15,6 +16,7 @@ let key = apiKey;
 
 class App extends Component {
   
+  //state includes a general photos state for the search and the pictures displayed by default with a loading state, as well as a picture and loading state for each default topic
   constructor() {
     super();
     this.state = {
@@ -37,6 +39,7 @@ class App extends Component {
     this.rainbowSearch();
   }
 
+  //search functions for general search and default searches
   performSearch = (query = 'black lives matter') => {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
@@ -89,15 +92,8 @@ class App extends Component {
       })
   }
 
-  componentDidUpdate(prevState) {
-    if (prevState.photos !== this.state.photos) {
-      console.log('component did update');
-    }
-  }
-
 
   render() {
-   // console.log(this.state.cats)
     return (
       <BrowserRouter>
         <div className="container">
@@ -109,11 +105,11 @@ class App extends Component {
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.photos} />
               }   />
-            <Route path='/search(/:query)?' render={ (props) =>
+            <Route path='/search(/:query)?' render={ () =>
                 (this.state.loading)
                 ? <p>Loading...</p>
-                : <PhotoContainer data={this.state.photos} urlProps={...props} />
-              } />
+                : <PhotoContainer data={this.state.photos} />
+              }    />
             <Route path='/cats' render={ () => 
               (this.state.catsLoading)
                 ? <p>Loading...</p>

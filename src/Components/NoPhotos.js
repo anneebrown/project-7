@@ -1,3 +1,5 @@
+//responsible if no picture was found
+
 import React from 'react';
 
  

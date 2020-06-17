@@ -1,3 +1,5 @@
+//responsible if an incorrect URL was entered
+
 import React from 'react';
 
 const NotFound = () => (

@@ -1,3 +1,5 @@
+//responsible for creating the actual url to each picture out of the data array it is passed
+
 import React from 'react';
 import Photo from './Photo';
 import NoPhotos from './NoPhotos';

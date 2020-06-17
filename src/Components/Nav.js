@@ -1,3 +1,5 @@
+//responsible for the links to the default searches
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
