@@ -110,17 +110,17 @@ class App extends Component {
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.photos} />
               }    />
-            <Route path='/cats' render={ () => 
+            <Route exact path='/cats' render={ () => 
               (this.state.catsLoading)
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.cats} />
             } />
-            <Route path='/dogs' render={ () => 
+            <Route exact path='/dogs' render={ () => 
               (this.state.dogsLoading)
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.dogs} />
             } />
-            <Route path='/rainbows' render={ () => 
+            <Route exact path='/rainbows' render={ () => 
               (this.state.rainbowsLoading)
                 ? <p>Loading...</p>
                 : <PhotoContainer data={this.state.rainbows} />
